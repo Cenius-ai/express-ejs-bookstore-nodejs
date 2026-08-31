@@ -1,0 +1,20 @@
+{
+  "name": "express-ejs-bookstore",
+  "version": "1.0.0",
+  "description": "A server-rendered bookstore built with Express, EJS, and SQLite.",
+  "private": true,
+  "scripts": {
+    "seed": "node seed.js",
+    "dev": "node app.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "helmet": "^6.2.0"
+  }
+}
