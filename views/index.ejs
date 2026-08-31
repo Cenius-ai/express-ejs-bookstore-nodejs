@@ -1,0 +1,24 @@
+<h1 class="page-heading">Browse the Catalog</h1>
+
+<% if (books.length === 0) { %>
+  <p class="empty-state">No books available yet. Check back soon!</p>
+<% } else { %>
+  <div class="book-grid">
+    <% books.forEach(function(book) { %>
+      <a href="/books/<%= book.id %>" class="book-card">
+        <div class="book-card-cover">
+          <% if (book.cover_url) { %>
+            <img src="<%= book.cover_url %>" alt="Cover for <%= book.title %>" loading="lazy">
+          <% } else { %>
+            <div class="cover-placeholder"><%= book.title.charAt(0) %></div>
+          <% } %>
+        </div>
+        <div class="book-card-body">
+          <h2 class="book-card-title"><%= book.title %></h2>
+          <p class="book-card-author"><%= book.author %></p>
+          <p class="book-card-price">$<%= book.price.toFixed(2) %></p>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+<% } %>

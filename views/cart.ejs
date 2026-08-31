@@ -1,0 +1,57 @@
+<h1 class="page-heading">Your Cart</h1>
+
+<% if (typeof message !== 'undefined' && message) { %>
+  <div class="message"><%= message %></div>
+<% } %>
+
+<% if (items.length === 0) { %>
+  <div class="empty-state">
+    <p>Your cart is empty.</p>
+    <a href="/" class="btn btn-primary">Browse Books</a>
+  </div>
+<% } else { %>
+  <div class="cart-list">
+    <div class="cart-header">
+      <span class="cart-col-book">Book</span>
+      <span class="cart-col-price">Price</span>
+      <span class="cart-col-qty">Qty</span>
+      <span class="cart-col-total">Total</span>
+      <span class="cart-col-action"></span>
+    </div>
+
+    <% items.forEach(function(item) { %>
+      <div class="cart-row">
+        <div class="cart-col-book">
+          <div class="cart-book-cover">
+            <% if (item.cover_url) { %>
+              <img src="<%= item.cover_url %>" alt="" loading="lazy">
+            <% } else { %>
+              <div class="cover-placeholder small"><%= item.title.charAt(0) %></div>
+            <% } %>
+          </div>
+          <div>
+            <a href="/books/<%= item.id %>" class="cart-book-title"><%= item.title %></a>
+            <span class="cart-book-author"><%= item.author %></span>
+          </div>
+        </div>
+        <span class="cart-col-price">$<%= item.price.toFixed(2) %></span>
+        <span class="cart-col-qty"><%= item.qty %></span>
+        <span class="cart-col-total">$<%= item.lineTotal.toFixed(2) %></span>
+        <span class="cart-col-action">
+          <form action="/cart/remove/<%= item.id %>" method="POST">
+            <button type="submit" class="btn btn-ghost btn-sm">Remove</button>
+          </form>
+        </span>
+      </div>
+    <% }) %>
+
+    <div class="cart-footer">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-value">$<%= total.toFixed(2) %></span>
+    </div>
+  </div>
+
+  <div class="cart-actions">
+    <a href="/" class="btn btn-ghost">&larr; Continue Browsing</a>
+  </div>
+<% } %>

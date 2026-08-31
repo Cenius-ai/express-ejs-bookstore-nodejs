@@ -1,0 +1,46 @@
+<div class="admin-header">
+  <h1>Dashboard</h1>
+  <a href="/admin/books/add" class="btn btn-primary">+ Add Book</a>
+</div>
+
+<% if (typeof message !== 'undefined' && message) { %>
+  <div class="message"><%= message %></div>
+<% } %>
+
+<% if (books.length === 0) { %>
+  <div class="empty-state">
+    <p>No books yet. <a href="/admin/books/add">Add your first book.</a></p>
+  </div>
+<% } else { %>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th class="col-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% books.forEach(function(book) { %>
+          <tr>
+            <td class="num"><%= book.id %></td>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td class="num">$<%= book.price.toFixed(2) %></td>
+            <td class="num"><%= book.stock %></td>
+            <td class="col-actions">
+              <a href="/admin/books/<%= book.id %>/edit" class="btn btn-sm btn-ghost">Edit</a>
+              <form action="/admin/books/<%= book.id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Delete &quot;<%= book.title %>&quot;? This cannot be undone.')">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>

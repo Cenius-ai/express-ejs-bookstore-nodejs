@@ -1,0 +1,42 @@
+<div class="book-detail">
+  <div class="book-detail-cover">
+    <% if (book.cover_url) { %>
+      <img src="<%= book.cover_url %>" alt="Cover for <%= book.title %>">
+    <% } else { %>
+      <div class="cover-placeholder large"><%= book.title.charAt(0) %></div>
+    <% } %>
+  </div>
+
+  <div class="book-detail-info">
+    <h1 class="book-detail-title"><%= book.title %></h1>
+    <p class="book-detail-author">by <%= book.author %></p>
+    <p class="book-detail-price">$<%= book.price.toFixed(2) %></p>
+
+    <% if (book.description) { %>
+      <div class="book-detail-desc">
+        <p><%= book.description %></p>
+      </div>
+    <% } %>
+
+    <p class="book-detail-stock">
+      <% if (book.stock > 0) { %>
+        <span class="in-stock"><%= book.stock %> in stock</span>
+      <% } else { %>
+        <span class="out-of-stock">Out of stock</span>
+      <% } %>
+    </p>
+
+    <div class="book-detail-actions">
+      <% if (book.stock > 0) { %>
+        <form action="/cart/add/<%= book.id %>" method="POST" class="add-to-cart-form">
+          <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+      <% } %>
+      <a href="/" class="btn btn-ghost">&larr; Back to Catalog</a>
+    </div>
+
+    <% if (inCart > 0) { %>
+      <p class="cart-hint"><%= inCart %> copy<%= inCart !== 1 ? 'ies' : '' %> already in your <a href="/cart">cart</a>.</p>
+    <% } %>
+  </div>
+</div>
