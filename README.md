@@ -116,7 +116,7 @@ _Full guide: [`USAGE.md`](USAGE.md)_
 
 ## Architecture
 
-Everything runs out of the box: a Node.js codebase (43 files). `install.sh` takes care of packages and initial data in a single pass; nothing else is required before launching. Top-level layout: `middleware/`, `models/`, `public/`, `routes/`, `views/`. Full setup details: [`INSTALL.md`](INSTALL.md).
+Everything runs out of the box: a Node.js codebase (32 files). `install.sh` takes care of packages and initial data in a single pass; nothing else is required before launching. Top-level layout: `middleware/`, `models/`, `public/`, `routes/`, `views/`. Full setup details: [`INSTALL.md`](INSTALL.md).
 
 ## FAQ
 
